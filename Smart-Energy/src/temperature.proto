@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+// Options for the GRPC
+option java_multiple_files = true;
+option java_package = "smartEnergy";
+option java_outer_classname = "EnergySystemImpl";
+
+package SmartEnergySystem;
+
+// Service Definition 2
+service Temperature{
+
+  // Server Stream RPC Method
+  rpc CheckTemperature (TempStreamStatus) returns (stream TempStatus) {}
+}
+
+/*
+   Message Definition:
+   The Client request the current indoor temperature and gets a message back from the Server
+*/
+
+message TempStreamStatus{
+  string tempCurrStatus = 1;
+}
+
+message TempStatus{
+  int32 tempCurr = 1;
+}

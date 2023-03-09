@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+// Options for the GRPC
+option java_multiple_files = true;
+option java_package = "smartEnergy";
+option java_outer_classname = "EnergySystemImpl";
+
+package SmartEnergySystem;
+
+// Service Definition 3
+service Setting{
+
+  // Client Stream RPC Method
+  rpc SetTemperature (stream NewTempRequest) returns (SetNewTemp) {}
+}
+
+/*
+   Message Definition:
+   The Client streams a message containing the current indoor temperature settled,
+   and the Server returns new settled temperature point.
+*/
+
+message NewTempRequest {
+  int32 tempRequest = 1;
+}
+
+message SetNewTemp {
+  int32 newTemp  = 1;
+}
